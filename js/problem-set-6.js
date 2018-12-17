@@ -394,4 +394,95 @@ function drawPyramid() {
 
 function drawHouse() {
 
+   let canvas = document.getElementById('canvas9');
+   let ctx = canvas.getContext('2d');
+   ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+   while(true){
+   doorColor=prompt("Enter a color for the Door");
+   houseColor=prompt("Enter a color for the House");
+   if((doorColor=="brown" || doorColor=="blue" || doorColor=="green" || doorColor=="orange" || doorColor=="purple" || doorColor=="red" || doorColor=="yellow")
+   && (houseColor=="brown" || houseColor=="blue" || houseColor=="green" || houseColor=="orange" || houseColor=="purple" || houseColor=="red" || houseColor=="yellow")) {
+     break;
+   }
+   else{
+
+          alert("One or more of your colors is invalid")
+      }
+     }
+     let x=150;
+     let lengthHouse=576;
+     let heightHouse=400;
+     let y=canvas.height-heightHouse-10;
+     ctx.beginPath();
+     ctx.fillStyle=houseColor;
+     ctx.fillRect(x,y,lengthHouse,heightHouse);
+     ctx.closePath();
+     ctx.beginPath();
+     ctx.fillStyle=doorColor;
+     ctx.fillRect(x+(lengthHouse/2)-30,y+heightHouse,60,60);
+     ctx.closePath();
+     const canv = document.getElementById("canvas9")
+
+	const ctxt = canv.getContext('2d');
+	ctxt.clearRect(0, 0, canv.width, canv.height);
+
+
+
+	let draw = false;
+	let xdim = canv.width*.7;
+	let ydim = canv.height*.6;
+	let yroofdim = canv.height*.3;
+
+
+
+	let housecol = prompt("Enter House Color");
+	let doorcol = prompt("Enter Door Color");
+	if((housecol == "blue" || housecol == "brown" || housecol == "green" ||
+		housecol == "orange" || housecol == "purple" || housecol == "red" || housecol == "yellow")
+		&& (doorcol == "blue" || doorcol == "brown" || doorcol == "green" ||
+		doorcol == "orange" || doorcol == "purple" || doorcol == "red" || doorcol == "yellow")) {
+		draw = true;
+	}
+	else {alert("Invalid input(s)");}
+
+
+
+	if (draw) {
+		ctxt.strokeStyle="black";
+		ctxt.lineWidth=2;
+
+		//House Frame
+		ctxt.fillStyle=housecol;
+		ctxt.fillRect(150, canv.height-ydim-10, xdim, ydim);
+		ctxt.strokeRect(150, canv.height-ydim-10, xdim, ydim);
+		//Roof
+		ctxt.fillStyle="grey";
+		ctxt.beginPath();
+		ctxt.moveTo(150, canv.height-ydim-10);
+		ctxt.lineTo(150+xdim/2, canv.height-ydim-yroofdim-10);
+		ctxt.lineTo(150+xdim, canv.height-ydim-10);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }
