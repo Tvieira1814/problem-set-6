@@ -12,6 +12,11 @@
 
 function sayHello() {
 
+   let canvas = document.getElementById('canvas1');
+   let ctx = canvas.getContext('2d');
+   ctx.clearRect(0, 0, canvas.width, canvas.length);
+   ctx.font="48px sans-serif";
+   ctx.strokeText("Hello, World", 10, 50);
 }
 
 /*
@@ -38,7 +43,19 @@ function sayHello() {
  */
 
 function drawRectangle() {
-
+   let canvas = document.getElementById('canvas2');
+   let ctx = canvas.getContext('2d');
+   ctx.clearRect(0, 0, canvas.width, canvas.height)
+   while(true){
+     var width=Number(prompt("Width"))
+     var height=Number(prompt("Height"))
+     var x=Number(prompt("X"))
+     var y=Number(prompt("Y"))
+     if(width>=1 && height>=1 && x>=5 && y>=5 && canvas.width-x-width>=0 && canvas.height-y-height>=0){
+       break;
+     }
+   }
+ctx.strokeRect(x, y, width, height);
 }
 
 /*
@@ -67,6 +84,19 @@ function drawRectangle() {
  */
 
 function drawColoredRectangle() {
+
+   let canvas = document.getElementById("canvas3");
+   let context = canvas.getContext("2d");
+   context.clearRect(0, 0, canvas.width, canvas.height);
+   let color;
+   while(true){
+     color=prompt("Color")
+     if(color=="black" || color=="blue" || color=="green" || color=="orange" || color=="purple" || color=="red" || color=="yellow") {
+       break;
+     }
+   }
+   context.fillStyle=color;
+   context.fillRect(10,10,100,50);
 
 }
 
@@ -101,8 +131,40 @@ function drawColoredRectangle() {
 
 function drawTriangle() {
 
-}
+   let x=10;
+   let y=10;
+   let a;
+   let b;
+   let c;
+   let canvas = document.getElementById("canvas4");
+   let context = canvas.getContext("2d");
 
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    while(true){
+   	a=Number(prompt("Side 1"));
+   	b=Number(prompt("Side 2"));
+   	c=Number(prompt("Side 3"));
+   	if(((a**2) + (b**2) == (c**2)) && a>0 && b>0 && c>0 && canvas.width-x-a>=0 && canvas.height-y-b>=0){
+   		break;
+   	}else{
+   		alert("That is not a valid triangle")
+   	}
+}
+context.beginPath();
+context.moveTo(x,y);
+context.lineTo(x,y+a);
+context.stroke();
+
+context.beginPath();
+context.moveTo(x,y+a);
+context.lineTo(x+b,y+a);
+context.stroke();
+
+context.beginPath();
+context.moveTo(x,y);
+context.lineTo(x+b,y+a);
+context.stroke();
+}
 /*
  * Smile. 7 points.
  *
@@ -124,7 +186,37 @@ function drawTriangle() {
 
 function drawSmileyFace() {
 
-}
+   let radius;
+   let canvas = document.getElementById('canvas5');
+   let ctx = canvas.getContext('2d');
+   ctx.clearRect(0, 0, canvas.width, canvas.height);
+  	while(true){
+  		radius=Number(prompt("Radius"));
+  		if(radius>=1 && radius<=canvas.width && Number.isInteger(radius)){
+  			break;
+  		}
+  	}
+   let x=canvas.width;
+   let y=canvas.height;
+   let eyeRadius=radius*.1
+   let mouthRadius=radius*.7
+   ctx.beginPath();
+   ctx.arc(x/2, y/2, radius, 0, Math.PI*2);
+   ctx.stroke();
+
+
+   ctx.beginPath();
+   ctx.arc(x/2 - radius/3, y/2-radius/4, eyeRadius,0, Math.PI*2);
+   ctx.stroke();
+
+   ctx.beginPath();
+   ctx.arc(x/2+radius/3, y/2-radius/4, eyeRadius,0, Math.PI*2);
+   ctx.stroke();
+
+   ctx.beginPath();
+   ctx.arc(x/2, y/2, mouthRadius,0, Math.PI);
+   ctx.stroke();
+   }
 
 /*
  * Star. 9 points.
@@ -146,6 +238,38 @@ function drawSmileyFace() {
 
 function drawStar() {
 
+     let canvas = document.getElementById('canvas6');
+     let ctx = canvas.getContext('2d');
+     ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+       let outerRadius=Number(prompt("Outer Radius"))
+       let innerRadius=Number(prompt("Inner Radius"))
+       if (outerRadius>=innerRadius && canvas.width>=outerRadius+125 && canvas.height>=outerRadius+125 && innerRadius>=1 && outerRadius>=1){
+         let points=5;
+         let outerx=[];
+         let outery=[];
+         let innerx=[];
+         let innery=[];
+
+                for(let i=0;i<points;i++){
+                  outerx.push(Math.cos((Math.PI*2*i)/points-(Math.PI/2))*outerRadius+125);
+                  outery.push(Math.sin((Math.PI*2*i)/points-(Math.PI/2))*outerRadius+125);
+                  innerx.push(Math.cos(((Math.PI*2*i)/points)-(Math.PI/2)+(Math.PI/points))*innerRadius+125);
+                  innery.push(Math.sin(((Math.PI*2*i)/points)-(Math.PI/2)+(Math.PI/points))*innerRadius+125);
+                }
+                ctx.beginPath();
+                ctx.moveTo(outerx[0], outery[0]);
+                for(let j=0;j<outerx.length;j++){
+                  ctx.lineTo(innerx[j], innery[j]);
+                  ctx.lineTo(outerx[j+1], outery[j+1]);
+                }
+                ctx.lineTo(outerx[0], outery[0]);
+                ctx.stroke();
+                ctx.closePath();
+            }
+            else{
+                alert('invalid inputs');
+              }
 }
 
 /*
@@ -165,6 +289,38 @@ function drawStar() {
 
 function drawStopSign() {
 
+   let canvas = document.getElementById('canvas7');
+   let ctx = canvas.getContext('2d');
+   ctx.clearRect(0, 0, canvas.width, canvas.height);
+   let sidelength=80;
+   let center=[10+(sidelength)/2+sidelength/Math.sqrt(2), 10+(sidelength/2)+(sidelength/Math.sqrt(2))]
+   console.log(center)
+   let points=8;
+   let pointx=[];
+   let pointy=[];
+
+   for(let i=0;i<points;i++){
+     pointx.push(Math.cos(((Math.PI*2*i)/points)-Math.PI/8)*100+center[0]);
+     pointy.push(Math.sin(((Math.PI*2*i)/points)-Math.PI/8)*100+center[1]);
+
+ }
+ ctx.beginPath();
+ ctx.moveTo([pointx][0], pointy[0]);
+ for(let j=0;j<pointx.length;j++){
+   ctx.lineTo(pointx[j], pointy[j]);
+ }
+ ctx.lineTo(pointx[0], pointy[0]);
+ ctx.stroke();
+
+ ctx.fillStyle="red";
+ ctx.fill();
+ ctx.closePath();
+ ctx.beginPath();
+ ctx.textAlign="center";
+ ctx.font="56px sans-serif";
+ ctx.fillStyle="white";
+ ctx.fillText("STOP", center[0], center[1]+15);
+ ctx.closePath()
 }
 
 /*
@@ -187,6 +343,24 @@ function drawStopSign() {
 
 function drawPyramid() {
 
+   let canvas = document.getElementById('canvas8');
+   let ctx = canvas.getContext('2d');
+   ctx.clearRect(0, 0, canvas.width, canvas.height);
+   let sideLength=Number(prompt("Length"));
+   let x=10;
+   let y=canvas.height-10;
+   let i=0;
+   lineNumber=1;
+   while(i<5){
+     for(let j=0+lineNumber;j<=5;j++){
+       ctx.strokeRect(x,y-sideLength,sideLength,sideLength);
+       x+=sideLength;
+     }
+     x=10+(sideLength/2)*lineNumber;
+     y-=sideLength;
+     lineNumber++;
+     i++;
+   }
 }
 
 /*
